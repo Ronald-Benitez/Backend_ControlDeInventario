@@ -1,0 +1,19 @@
+*-*-*-*     products routes     *-*-*-*
+--------POST-------
+POST /api/products - create a new product
+
+--------GET-------
+GET /api/products - get all products
+GET /api/products/id/:id - get a single product
+GET /api/products/name/:name - get a single product
+GET /api/products/type/:type - get product by type
+GET /api/products/min - get products with stock less or equal than min
+GET /api/products/max - get products with stock greater or equal than max
+
+--------PUT-------
+PUT /api/products/:id - update a product
+PUT /api/products/increase/:id&:value - increase product quantity
+PUT /api/products/decrease/:id&:value - decrease product quantity
+
+--------DELETE-------
+DELETE /api/products/:id - delete a product

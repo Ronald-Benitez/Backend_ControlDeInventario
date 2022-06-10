@@ -1,0 +1,33 @@
+module.exports =(sequelize,type)=>{
+    return sequelize.define("product",{
+        id:{
+            type:type.INTEGER,
+            primaryKey:true,
+            autoIncrement:true
+        },
+        name:{
+            type:type.STRING,
+            allowNull:false
+        },
+        type:{
+            type:type.STRING,
+            allowNull:false
+        },
+        price:{
+            type:type.FLOAT,
+            allowNull:false
+        },
+        min:{
+            type:type.INTEGER,
+            allowNull:false
+        },
+        max:{
+            type:type.INTEGER,
+            allowNull:false
+        },
+        stock:{
+            type:type.INTEGER,
+            allowNull:false
+        }
+    });
+}

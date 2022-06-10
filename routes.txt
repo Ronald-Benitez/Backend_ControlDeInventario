@@ -1,4 +1,4 @@
-*-*-*-*     products routes     *-*-*-*
+*-*-*-*     products routes    need header = user-token *-*-*-*
 --------POST-------
 POST /api/products - create a new product
 

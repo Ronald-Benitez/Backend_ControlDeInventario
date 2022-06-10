@@ -17,3 +17,21 @@ PUT /api/products/decrease/:id&:value - decrease product quantity
 
 --------DELETE-------
 DELETE /api/products/:id - delete a product
+
+
+
+*-*-*-*     users routes     *-*-*-*
+--------POST-------
+POST /api/users/register - create a new user
+POST /api/users/login - login a user
+
+--------GET-------
+GET /api/users - get all users
+GET /api/users/id/:id - get a single user
+GET /api/users/name/:name - get a single user
+
+--------PUT-------
+PUT /api/users/:id - update a user
+
+--------DELETE-------
+DELETE /api/users/:id - delete a user

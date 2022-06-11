@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Root route
-app.use("/api",apiRouter);
+app.use("/api", apiRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is running on port "+process.env.PORT);
+app.listen(process.env.PORT || process.env.PORT2, () => {
+  console.log("Server is running on port " + process.env.PORT);
 });

@@ -12,7 +12,10 @@ require("./db");
 //Body parser setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 //Root route
 app.use("/api", apiRouter);
 

@@ -18,6 +18,7 @@ sequelize.sync({force:false}).then(()=>{
     console.log("Database and tables created!");
 }).catch(err=>{});
 
+
 module.exports = {
     Product,
     User

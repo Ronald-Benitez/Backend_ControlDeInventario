@@ -3,19 +3,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const apiRouter = require("./routes/api");
+const cors = require("cors");
 
 //Express setup
 const app = express();
-
+app.use(cors());
 require("./db");
 
 //Body parser setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+
 //Root route
 app.use("/api", apiRouter);
 

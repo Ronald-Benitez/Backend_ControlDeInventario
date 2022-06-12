@@ -27,7 +27,7 @@ router.post(
       const user = await User.create(req.body);
       res.json(user);
     } else {
-      res.status(400).json({ errors: errors.array() });
+      res.json({ errors: errors.array() });
     }
   }
 );
@@ -74,7 +74,7 @@ router.put(
       await user.update(req.body);
       res.json(user);
     } else {
-      res.status(400).json({ errors: errors.array() });
+      res.json({ errors: errors.array() });
     }
   }
 );
@@ -94,13 +94,13 @@ router.post("/login", async (req, res) => {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         res.json({ success: createToken(user) });
       } else {
-        res.status(400).json({ message: "Contraseña incorrecta" });
+        res.json({ message: "Contraseña incorrecta" });
       }
     } else {
-      res.status(400).json({ message: "Debe ingresar la contraseña" });
+      res.json({ message: "Debe ingresar la contraseña" });
     }
   } else {
-    res.status(400).json({ message: "Usuario no encontrado" });
+    res.json({ message: "Usuario no encontrado" });
   }
 });
 

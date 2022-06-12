@@ -29,7 +29,7 @@ router.post(
       const product = await Product.create(req.body);
       res.json(product);
     } else {
-      res.status(400).json({ errors: errors.array() });
+      res.json({ errors: errors.array() });
     }
   }
 );
@@ -56,10 +56,10 @@ router.put(
         await product.update(req.body);
         res.json(product);
       } else {
-        res.status(400).json({ errors: errors.array() });
+        res.json({ errors: errors.array() });
       }
     } else {
-      res.status(400).json({ errors: "No tienes permiso para actualizar" });
+      res.json({ errors: "No tienes permiso para actualizar" });
     }
   }
 );
@@ -70,7 +70,7 @@ router.delete("/:id", async (req, res) => {
     await product.destroy();
     res.json({ message: "Product deleted" });
   } else {
-    res.status(400).json({ message: "No tienes permiso para eliminar" });
+    res.json({ message: "No tienes permiso para eliminar" });
   }
 });
 

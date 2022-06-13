@@ -66,16 +66,15 @@ router.put(
 
 router.delete("/:id", async (req, res) => {
   if (verifyType(req.type)) {
-    try{
+    try {
       const product = await Product.findByPk(req.params.id);
       await product.destroy();
-    }catch(err){
-      res.json({message: "No se pudo eliminar"})
+    } catch (err) {
+      res.json({ message: "No se pudo eliminar" });
     }
 
     const products = await Product.findAll();
     res.json(products);
-
   } else {
     res.json({ message: "No tienes permiso para eliminar" });
   }
@@ -128,17 +127,23 @@ router.put("/increase/:id&:value", async (req, res) => {
   await product.sequelize.query(
     `UPDATE products SET stock = ${product.stock}  WHERE id = ${product.id}`
   );
-  res.json(product);
+  const products = await Product.findAll();
+  res.json(products);
 });
 
 //Decrease stock
 router.put("/decrease/:id&:value", async (req, res) => {
   const product = await Product.findByPk(req.params.id);
   product.stock = parseInt(product.stock) - parseInt(req.params.value);
-  await product.sequelize.query(
-    `UPDATE products SET stock = ${product.stock}  WHERE id = ${product.id}`
-  );
-  res.json(product);
+
+  if (product.stock < 0) {
+    res.json({ message: "No se puede disminuir más del stock" });
+  } else {
+    await product.sequelize.query(
+      `UPDATE products SET stock = ${product.stock}  WHERE id = ${product.id}`
+    );
+    res.json(product);
+  }
 });
 
 const verifyType = (type) => {

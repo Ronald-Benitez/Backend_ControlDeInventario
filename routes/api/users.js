@@ -92,7 +92,7 @@ router.post("/login", async (req, res) => {
   if (user) {
     if (req.body.password) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        res.json({ success: createToken(user) });
+        res.json({ success: createToken(user), type: user.type });
       } else {
         res.json({ message: "Contraseña incorrecta" });
       }

@@ -142,7 +142,8 @@ router.put("/decrease/:id&:value", async (req, res) => {
     await product.sequelize.query(
       `UPDATE products SET stock = ${product.stock}  WHERE id = ${product.id}`
     );
-    res.json(product);
+    const products = await Product.findAll();
+    res.json(products);
   }
 });
 

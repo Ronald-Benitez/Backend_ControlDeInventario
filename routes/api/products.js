@@ -66,10 +66,16 @@ router.put(
 
 router.delete("/:id", async (req, res) => {
   if (verifyType(req.type)) {
-    const product = await Product.findByPk(req.params.id);
-    await product.destroy();
-    product = await Product.findAll();
-    res.json(product);
+    try{
+      const product = await Product.findByPk(req.params.id);
+      await product.destroy();
+    }catch(err){
+      res.json({message: "No se pudo eliminar"})
+    }
+
+    const products = await Product.findAll();
+    res.json(products);
+
   } else {
     res.json({ message: "No tienes permiso para eliminar" });
   }

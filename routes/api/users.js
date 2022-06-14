@@ -72,7 +72,8 @@ router.put(
       req.body.password = bcrypt.hashSync(req.body.password, 10);
       const user = await User.findByPk(req.params.id);
       await user.update(req.body);
-      res.json(user);
+      const users = await User.findAll();
+      res.json(users);
     } else {
       res.json({ errors: errors.array() });
     }
@@ -83,7 +84,8 @@ router.put(
 router.delete("/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   await user.destroy();
-  res.json({ message: "Usuario eliminado" });
+  const users = await User.findAll();
+  res.json(users);
 });
 
 //Login user

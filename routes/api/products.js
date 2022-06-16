@@ -88,10 +88,9 @@ router.get("/id/:id", async (req, res) => {
 
 //Get by name
 router.get("/name/:name", async (req, res) => {
-  const product = await Product.sequelize.query(
-    `SELECT * FROM products WHERE name LIKE "${req.params.name}"`,
-    { type: Product.sequelize.QueryTypes.SELECT }
-  );
+  const product = await Product.findOne({
+    where: { name: req.params.name },
+  });
   res.json(product);
 });
 
